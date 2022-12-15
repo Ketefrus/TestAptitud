@@ -1,0 +1,56 @@
+@import 'base.scss';
+
+.posts-table {
+
+  &__header {
+  text-align: left;
+  font-weight: 700;
+  margin-top: 2em;
+  cursor: default;
+  margin-left: 1.5em;
+  }
+
+  &__title {
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+  }
+
+  &__subtitle {
+  color: #6c757d;
+  font-size: 1em;
+  }
+  // Table Styles
+  &__info { padding: 4em 1em; }
+  &__thead {
+  background-color: #f8f9fa;
+  text-align: end;
+  padding-right: 1em;
+  border-radius: 0.5em;
+  }
+  &__td { border: none; }
+  &__tr {  height: 5.5em; vertical-align: middle; text-align: end }
+  &__impressions {
+  padding-right: 1.5em
+  }
+  &__copy {
+    word-wrap: break-word;
+
+    &-td {
+      cursor: pointer;
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        max-width: 100px;
+        height: 100%;
+      }
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

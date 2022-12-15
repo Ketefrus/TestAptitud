@@ -1,23 +1,27 @@
 <template>
-  <div class="home">
-    <FilterSidebar />
-    <PostsTable />
-    <PieChart />
+  <div class="container animated fadeIn">
+  <b-row class="justify-content-between">
+    <!-- <FilterSidebar /> -->
+    <b-col cols="7">
+      <PostsTable />
+    </b-col>
+
+    <b-col cols="4">
+      <PieChart />
+    </b-col>
+  </b-row>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import FilterSidebar from '@/components/FilterSidebar.component.vue'
-import PieChart from '@/components/PieChart.component.vue'
-import PostsTable from '@/components/PostsTable.component.vue'
 
 export default {
   name: 'HomeView',
   components: {
-    PieChart,
-    FilterSidebar,
-    PostsTable
+    PieChart: () => import('@/components/PieChart.component'),
+    // FilterSidebar: () => import('@/components/FilterSidebar.component'),
+    PostsTable: () => import('@/components/PostsTable.component')
   }
 }
 </script>
