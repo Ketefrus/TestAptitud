@@ -1,15 +1,26 @@
-#app {
+html, #app {
   background-color: #f8f9fa;
+}
+body {
+  height: 100%;
 }
 .horizm-card {
   border-radius: 1em;
-  margin-top: 2em;
+  // margin-top: 2em;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+.margin-top { margin-top: 2em; }
 .horizm-table {
   padding: 0.5em;
 }
+.download-pdf {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  
+}
+.icon { max-width: 50px; max-height: 100px; cursor: pointer;}
 .strong { font-weight: 700 }
 .highlight {
   font-weight: 700;

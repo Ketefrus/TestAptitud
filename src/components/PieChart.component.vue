@@ -1,12 +1,13 @@
 <template>
-  <b-card class="horizm-card posts-chart" no-body>
+  <b-card class="horizm-card posts-charts__card" no-body>
     <div class="posts-table__header">
-      <p class="posts-chart__title">Impresions by Media Types Analysis</p>
+      <div class="posts-charts__title">Impresions by Media Types Analysis</div>
     </div>
 
     <b-tabs
       v-model="tabIndex"
       :content-class="`mt-3 posts-chart__tabs`"
+      class="posts-charts__titleTabs"
       nav-wrapper-class="posts-charts__nav"
     >
       <b-tab title="Media Types" title-item-class="posts-charts__tab" title-link-class="posts-charts__tab" lazy>

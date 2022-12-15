@@ -77,7 +77,7 @@ export default {
   },
   data () {
     return {
-      perPage: 5,
+      perPage: 2,
       currentPage: 1,
 
       fields: FIELDS_POSTS_TABLE,

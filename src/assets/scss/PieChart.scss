@@ -1,6 +1,7 @@
 @import 'base.scss';
 
 .posts-charts {
+  &__card { height: 100% }
   &__header {
     text-align: left;
     font-weight: 700;
@@ -10,13 +11,17 @@
   }
   
   &__title {
-    font-size: 1.3em;
+    font-size: 1.2rem;
     margin-bottom: 0.5em;
   }
   &__tabs, &__nav, &__tab {
     border: none !important;
   }
+  &__titleTabs {
+    padding-top: 1em;
+  }
 }
+
 .apexcharts-legend { align-items: flex-start; }
 .nav-tabs {
   padding: 0 1em;
