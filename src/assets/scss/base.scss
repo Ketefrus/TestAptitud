@@ -26,3 +26,12 @@ body {
   font-weight: 700;
   color: #00daff;
  }
+
+ .corporate-button {
+  // width: auto !important;
+  background-color: #003865;
+  border-color: #003865;
+  &:hover {
+    background-color: lighten($color: #003865, $amount: 10%);
+  }
+}

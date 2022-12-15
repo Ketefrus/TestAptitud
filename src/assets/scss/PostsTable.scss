@@ -36,7 +36,6 @@
     word-wrap: break-word;
 
     &-td {
-      cursor: pointer;
       span {
         white-space: nowrap;
         overflow: hidden;
@@ -52,5 +51,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .pointer {
+    cursor: pointer;
   }
 }

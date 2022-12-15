@@ -21,7 +21,9 @@
         responsive
       >
         <template #cell(network)="{item}">
-          <logosBrand :brand="item.network" />
+          <div class="pointer" @click="openModal(item.network, 'network')">
+            <logosBrand :brand="item.network" />
+          </div>
         </template>
 
         <template #cell(date)="{item}">
@@ -29,23 +31,16 @@
         </template>
 
         <template #cell(copy)="{item}">
-          <span
-            v-if="!item.editMode"
-            v-b-tooltip.hover.v-info :title="'Click to edit'"
-            class="posts-table__copy" @click="showInput(item, true)"
-          >
+          <span class="posts-table__copy pointer" @click="openModal(item.copy, 'copy')" >
             {{ item.copy }}
           </span>
-
-          <b-form-input
-            v-else
-            type="text" id="copy"
-            class="form-control"
-            v-model="item.copy"
-            @keyup.enter="showInput(item, false)" @focusout="showInput(item, false)"
-          />
         </template>
 
+        <template #cell(type)="{item}">
+          <span class="pointer" @click="openModal(item.type, 'type')" >
+            {{ item.type }}
+          </span>
+        </template>
         <template #cell(impressions)="{item}">
           <span class="posts-table__impressions">{{ item.impressions | number }}</span>
         </template>
@@ -59,6 +54,14 @@
         ></b-pagination>
       </div>
     </div>
+
+    <EditModal
+      :show="showModal"
+      :data="editPost"
+      :field="typePost"
+      @update:show="showModal = $event"
+      @edit="edit($event)"
+    />
   </b-card>
 </template>
 
@@ -70,7 +73,8 @@ import { formatDateShort } from '@/utils/utils'
 export default {
   name: 'PostsTable',
   components: {
-    logosBrand: () => import('@/assets/logos/logosBrand.vue')
+    logosBrand: () => import('@/assets/logos/logosBrand.vue'),
+    EditModal: () => import('@/components/Modals/EditPostsTable.modal')
   },
   props: {
     data: { Type: Array, default () { return [] } }
@@ -81,7 +85,11 @@ export default {
       currentPage: 1,
 
       fields: FIELDS_POSTS_TABLE,
-      formatDateShort: formatDateShort
+      formatDateShort: formatDateShort,
+
+      editPost: null,
+      typePost: '',
+      showModal: false
     }
   },
   created () {
@@ -94,6 +102,12 @@ export default {
         return p
       })
     },
+    openModal (item, type) {
+      this.editPost = item
+      this.typePost = type
+
+      this.showModal = true
+    },
     // You need to re-do the array so the changes makes effect
     showInput (item, value) {
       const postItems = [...this.posts]
@@ -101,6 +115,18 @@ export default {
 
       postItems[index].editMode = value
       this.posts = [...postItems]
+    },
+    edit (value) {
+      console.log('b')
+      const postItems = [...this.posts]
+      const index = this.posts.findIndex(p => p[this.typePost] === this.editPost)
+
+      if (this.typePost === 'copy') { postItems[index].copy = value }
+      if (this.typePost === 'type') { postItems[index].type = value }
+      if (this.typePost === 'network') { postItems[index].network = value }
+
+      this.posts = [...postItems]
+      this.showModal = false
     }
   },
   computed: {

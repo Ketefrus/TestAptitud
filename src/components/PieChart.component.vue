@@ -1,7 +1,7 @@
 <template>
   <b-card class="horizm-card posts-charts__card" no-body>
     <div class="posts-table__header">
-      <div class="posts-charts__title">Impresions by Media Types Analysis</div>
+      <div class="posts-charts__title">Impresions by {{ tabName }} Analysis</div>
     </div>
 
     <b-tabs
@@ -36,6 +36,11 @@ export default {
   data () {
     return {
       tabIndex: 0
+    }
+  },
+  computed: {
+    tabName () {
+      return this.tabIndex === 0 ? 'Media Types' : 'Networks'
     }
   }
 }
