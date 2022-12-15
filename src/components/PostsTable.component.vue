@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { fetchPosts } from '@/services/api'
+// import { fetchPosts } from '@/services/api'
 import { FIELDS_POSTS_TABLE } from '@/config'
 import { formatDateShort } from '@/utils/utils'
 
@@ -72,9 +72,11 @@ export default {
   components: {
     logosBrand: () => import('@/assets/logos/logosBrand.vue')
   },
+  props: {
+    data: { Type: Array, default () { return [] } }
+  },
   data () {
     return {
-      posts: [],
       perPage: 5,
       currentPage: 1,
 
@@ -87,12 +89,10 @@ export default {
   },
   methods: {
     getData () {
-      this.posts = fetchPosts()
       this.posts = this.posts.map(p => {
         p.editMode = false
         return p
       })
-      console.log(this.posts)
     },
     // You need to re-do the array so the changes makes effect
     showInput (item, value) {
@@ -104,6 +104,10 @@ export default {
     }
   },
   computed: {
+    posts: {
+      get: function () { return this.data },
+      set: function (val) { this.$emit('update:posts', val) }
+    },
     totalPosts () {
       return this.posts.length
     }

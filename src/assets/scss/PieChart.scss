@@ -1,1 +1,44 @@
 @import 'base.scss';
+
+.posts-charts {
+  &__header {
+    text-align: left;
+    font-weight: 700;
+    margin-top: 2em;
+    cursor: default;
+    margin-left: 1.5em;
+  }
+  
+  &__title {
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+  }
+  &__tabs, &__nav, &__tab {
+    border: none !important;
+  }
+}
+.apexcharts-legend { align-items: flex-start; }
+.nav-tabs {
+  padding: 0 1em;
+  padding-bottom: 1px;
+  border-bottom: solid 1px #94a1b6 !important; 
+}
+
+.nav-link:not(.active):after {
+  display:block;
+  content: '';
+  border-bottom: solid 3px #94a1b6;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+  transform-origin: 100% 50%;
+}
+.nav-link.active {
+  display:block;
+  content: '';
+  border-bottom: solid 3px #94a1b6 !important;  
+}
+.nav-link {
+  padding-bottom: 0;
+  color: #94a1b6 !important
+}
+.nav-link:not(.active):hover:after { transform: scaleX(1); transform-origin:   0% 50%; }
