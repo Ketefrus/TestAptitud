@@ -21,7 +21,7 @@
         responsive
       >
         <template #cell(network)="{item}">
-          <div class="pointer" @click="openModal(item.network, 'network')">
+          <div class="pointer" @click="openModal(item.network, 'network', item)">
             <logosBrand :brand="item.network" />
           </div>
         </template>
@@ -89,6 +89,7 @@ export default {
 
       editPost: null,
       typePost: '',
+      index: null,
       showModal: false
     }
   },
@@ -102,28 +103,21 @@ export default {
         return p
       })
     },
-    openModal (item, type) {
+    openModal (item, type, index) {
+      this.index = this.posts.indexOf(index)
       this.editPost = item
       this.typePost = type
 
       this.showModal = true
     },
+
     // You need to re-do the array so the changes makes effect
-    showInput (item, value) {
-      const postItems = [...this.posts]
-      const index = this.posts.findIndex(p => p === item)
-
-      postItems[index].editMode = value
-      this.posts = [...postItems]
-    },
     edit (value) {
-      console.log('b')
       const postItems = [...this.posts]
-      const index = this.posts.findIndex(p => p[this.typePost] === this.editPost)
 
-      if (this.typePost === 'copy') { postItems[index].copy = value }
-      if (this.typePost === 'type') { postItems[index].type = value }
-      if (this.typePost === 'network') { postItems[index].network = value }
+      if (this.typePost === 'copy') { postItems[this.index].copy = value }
+      if (this.typePost === 'type') { postItems[this.index].type = value }
+      if (this.typePost === 'network') { postItems[this.index].network = value }
 
       this.posts = [...postItems]
       this.showModal = false
